@@ -1,4 +1,4 @@
-package es.salesianos.service;
+package es.salesianos.controller;
 
 import java.util.List;
 
@@ -9,12 +9,12 @@ import es.salesianos.model.Actor;
 import es.salesianos.repository.ActorRepository;
 
 @Service
-public class ActorService {
+public class ActorController {
 
 	@Autowired
 	private ActorRepository repository;
 
-	public List<Actor> searchActor(int beginDate, int endDate) {
+	public List<Actor> filterAllActor(int beginDate, int endDate) {
 		return repository.searchActorYear(beginDate, endDate);
 	}
 

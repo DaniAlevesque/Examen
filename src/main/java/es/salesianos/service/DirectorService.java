@@ -2,34 +2,34 @@ package es.salesianos.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import es.salesianos.model.Director;
-import es.salesianos.repository.RepositoryDirector;
+import es.salesianos.repository.DirectorRepository;
 
-
+@Service
 public class DirectorService {
-	private RepositoryDirector repositoryDirector = new RepositoryDirector();
 
-	public RepositoryDirector getRepository() {
-		return repositoryDirector;
+	@Autowired
+	DirectorRepository repository;
+
+	public List<Director> selectAllDirector() {
+		return repository.selectAllDirector();
 	}
 
-	public void setRepository(RepositoryDirector repositoryDirector) {
-		this.repositoryDirector = repositoryDirector;
-	}
-	
-	public List<Director> listAllDirectors() {
-		return repositoryDirector.searchAllDirectors();
+	public void insertDirector(Director director) {
+		repository.insertDirector(director);
 	}
 
-	
-	public void searchAndDeleteDirector(Integer codDirector) {
-		repositoryDirector.searchAndDeleteDirector(codDirector);
+	public void deleteDirector(String codString) {
+		Director director = new Director();
+		int cod = Integer.parseInt(codString);
+		director.setCod(cod);
+		repository.deleteDirector(director);
 	}
 
-
-	public void addDirector(Director director) {
-		repositoryDirector.insertDirector(director);
+	public Director searchDirector(String name) {
+		return repository.searchDirector(name);
 	}
-
-
 }

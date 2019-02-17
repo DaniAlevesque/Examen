@@ -1,29 +1,24 @@
 package es.salesianos.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import es.salesianos.model.FilmActor;
+import es.salesianos.repository.FilmActorRepository;
 
-import es.salesianos.model.FilmActors;
-import es.salesianos.repository.RepositoryFilmActors;
-
+@Service
 public class FilmActorService {
 
-	private RepositoryFilmActors repositoryFilmActors = new RepositoryFilmActors();
+	@Autowired
+	FilmActorRepository repository;
 
-	public RepositoryFilmActors getRepository() {
-		return repositoryFilmActors;
+	public FilmActor searchFilmActor(String role) {
+		return repository.searchFilmActor(role);
 	}
 
-	public void setRepository(RepositoryFilmActors repositoryFilmActors) {
-		this.repositoryFilmActors = repositoryFilmActors;
+	public void insertFilmActor(FilmActor filmActor) {
+		repository.insertFilmActor(filmActor);
+		;
 	}
-	
-	public void insertFilmActor(FilmActors peliculaActor) {
-		repositoryFilmActors.insertFilmActors(peliculaActor);
-	}
-
-	public FilmActors filterAllPeliculaActor(String role) {
-		return repositoryFilmActors.filterAllPeliculaActor(role);
-	}
-
 
 }
